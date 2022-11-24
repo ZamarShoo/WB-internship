@@ -296,6 +296,7 @@
     /* 1 */
     padding: 0;
     /* 2 */
+    position: absolute;
   }
   
   /**
