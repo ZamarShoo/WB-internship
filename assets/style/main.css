@@ -260,7 +260,7 @@ input::-webkit-search-results-decoration { display: none; }
 }
 
 main {
-    width: 66%;
+    width: 62%;
     margin-top: 12px;
 }
 
@@ -338,6 +338,10 @@ article.item {
     max-width: 275px;
 }
 
+.item_left header h3.title_mobile {
+    display: none;
+}
+
 .item_left header h3 a {
     font-weight: 400;
     font-size: 16px;
@@ -363,6 +367,10 @@ article.item {
     font-size: 13px;
     line-height: 16px;
     color: #A0A0A4;
+}
+
+.size_mobile {
+    display: none;
 }
 
 .item_left header span.company {
@@ -729,7 +737,7 @@ aside {
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15), 0px 0px 1px rgba(0, 0, 0, 0.3);
     border-radius: 16px;
 
-    width: 30%;
+    width: 33%;
     height: max-content;
 }
 
@@ -737,6 +745,7 @@ aside {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     margin-bottom: 3px;
 }
 
@@ -877,4 +886,143 @@ aside {
 .policy {
     display: flex;
     align-items: baseline;
+}
+
+@media screen and (max-width: 900px) {
+    .main-wrapper {
+        flex-direction: column;
+    }
+
+    main, aside {width: 100%;}
+}
+
+@media screen and (max-width: 650px) {
+    .main-wrapper {
+        padding: 0;
+    }
+    .main {
+        padding: 0;
+    }
+    .delivery, .payment_type, .recipient {
+        padding: 12px 16px 24px;
+    }
+    aside {
+        padding: 16px 16px 24px;
+        background: none;
+        box-shadow: none;
+    }
+    .selected_section, h1 {
+        padding: 0 16px;
+    }
+    article.item {
+        flex-direction: column;
+    }
+    .item_left {
+        position: relative;
+    }
+    .item_right {
+        width: 100%;
+    }
+    .item_right__price {
+        display: none;
+    }
+    .item_right__count {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 12px;
+    }
+    .item_left img {
+        width: 80px;
+        height: 106px;
+    }
+    .item_left .checkbox {
+        padding-top: 0;
+        position: absolute;
+        top: 4px;
+        left: 4px;
+    }
+    .item_right__counter, .item_right__counter button, .item_right__counter input {
+        height: 32px;
+    }
+    .item_right__counter input {
+        width: 32px;
+    }
+    .item_right__counter button {
+        padding: 6px;
+        padding-top: 2px;
+    }
+    .item_left header h3.title_desktop {
+        display: none;
+    }
+
+    .item_left header h3.title_mobile {
+        display: block;
+    }
+    .item_left header {
+        max-width: 100%;
+    }
+    .item_left header span.company {
+        display: none;
+    }
+    .selected_section__missing .item_right__count {
+        justify-content: end;
+    }
+    .size_desktop {
+        display: none;
+    }
+    .size_mobile {
+        display: block;
+        position: absolute;
+        bottom: 6px;
+        left: 4px;
+        font-size: 14px;
+        line-height: 20px;
+        color: #000000;
+        width: 22px;
+        height: 22px;
+        background: #FFFFFF;
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .recipient_body > div {
+        flex-direction: column;
+    }
+    .recipient_body > div label {
+        width: 100% !important;
+    }
+    h1 {
+        font-size: 20px;
+    }
+    .item_left header h3 a {
+        font-size: 14px;
+    }
+    .delivery_head h2, .payment_type__head h2, .recipient_head h2 {
+        font-size: 20px;
+    }
+    .delivery_body ul li {
+        flex-direction: column;
+    }
+    .delivery_body ul li ul {
+        margin-top: 12px;
+    }
+    .recipient_body label {
+        margin-bottom: 45px;
+    }
+    .aside_total_header p span {
+        font-size: 20px;
+    }
+    .aside_delivery_section__head, .aside_payment_section__head,
+    .aside_delivery_section__body > p, .aside_payment_section__body .aside_card_selected {
+        display: none;
+    }
+    .aside_delivery_section__body .delivery_info, .aside_payment_info {
+        background: #F0ECF4;
+    }
+    .aside_section {
+        margin-top: 16px;
+    }
 }
