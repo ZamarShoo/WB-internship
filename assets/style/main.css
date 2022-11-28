@@ -30,7 +30,6 @@
     font-style: normal;
 }
 
-
 h1, h2 {
     letter-spacing: -0.01em;
     font-weight: 700;
@@ -68,7 +67,7 @@ body > header {
     letter-spacing: 0.02em;
     font-variant: small-caps;
     margin-left: 16px;
-    width: 106px;
+    width: 107px;
 }
 
 #search_mobile {display: none;}
@@ -243,6 +242,11 @@ input::-webkit-search-results-decoration { display: none; }
 
 /*  MAIN  */
 
+.main-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
 .main {
     background-color: #F6F6FA;
     border-radius: 23px;
@@ -256,7 +260,7 @@ input::-webkit-search-results-decoration { display: none; }
 }
 
 main {
-    max-width: 891px;
+    width: 66%;
     margin-top: 12px;
 }
 
@@ -618,10 +622,11 @@ i.star {
 
 .delivery_info i {
     display: inline-block;
-    min-width: 22px;
-    height: 22px;
-    background-image: url(./../images/price_shipping.svg);
-    margin-right: 8px;
+    min-width: 22px !important;
+    height: 22px !important;
+    background-image: url(./../images/price_shipping.svg) !important;
+    margin-right: 8px !important;
+    background-size: 22px !important;
 }
 
 .delivery_info span {
@@ -713,4 +718,163 @@ i.star {
 .recipient_body input:focus + span {
     top: -30px;
     font-size: 13px;
+}
+
+
+/*  ASIDE  */
+
+aside {
+    padding: 16px 24px 24px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15), 0px 0px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+
+    width: 30%;
+    height: max-content;
+}
+
+.aside_total li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3px;
+}
+
+.aside_total_header {
+    margin-bottom: 8px;
+}
+
+.aside_total_header p {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.aside_total_header p span {
+    font-size: 24px;
+    line-height: 32px;
+}
+
+.aside_section {
+    margin-top: 24px;
+}
+
+.aside_section i {
+    display: inline-block;
+    background-image: url(./../images/pen.svg);
+    background-size: 16px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.aside_delivery_section__head, .aside_payment_section__head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.aside_delivery_section__head h3, .aside_payment_section__head h3 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+}
+
+.aside_delivery_section__body .date {
+    font-size: 13px;
+    line-height: 16px;
+    color: #CB11AB;
+    padding-bottom: 1px;
+    border-bottom: 1px dashed rgba(203, 17, 171, 0.3);
+    width: max-content;
+    margin: 4px 0 13px;
+}
+
+.aside_delivery_section__body .delivery_info {
+    background: #F6F6FA;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.aside_card_selected {
+    display: flex;
+    align-items: center;
+    margin: 4px 0 12px;
+}
+
+.aside_card_selected img {
+    width: 32px;
+    height: 24px;
+    object-fit: cover;
+}
+
+.aside_card_selected p {
+    font-size: 13px;
+    line-height: 16px;
+    margin-left: 8px;
+}
+
+.aside_payment_info {
+    background: #F6F6FA;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.aside_payment_info .checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.aside_payment_info h3 {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.aside_payment_info > p {
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.btn-wrapper button {
+    font-family: 'Segoe UI';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 12.5px 32px;
+    border: none;
+    outline: none;
+    background: #CB11AB;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 24px 0 12px;
+}
+
+.btn-wrapper i {
+    display: inline-block;
+    min-width: 12.51px;
+    height: 10.16px;
+    background-image: url(./../images/policy.svg);
+    margin-right: 8px;
+}
+
+.policy p, .policy p a {
+    font-size: 13px;
+    line-height: 16px;
+    color: #000000;
+}
+
+.policy p a {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.policy {
+    display: flex;
+    align-items: baseline;
 }
