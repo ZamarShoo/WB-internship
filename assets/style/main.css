@@ -1026,3 +1026,18 @@ aside {
         margin-top: 16px;
     }
 }
+
+/*  FOOTER  */
+
+footer {
+    padding: 24px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer p {
+    font-size: 13px;
+    line-height: 16px;
+    color: rgba(255, 255, 255, 0.7);
+}
