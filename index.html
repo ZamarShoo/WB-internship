@@ -48,7 +48,7 @@
                 </li>
                 <li class="cart">
                     <a href="#">
-                        <span>3</span>
+                        <span id="cart_desktop">3</span>
                         <object data="" type="">
                             <svg width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2214 15.4665C10.3829 15.9206 10.8452 16.1949 11.3212 16.119L24.0874 14.0828C24.5004 14.017 24.8288 13.701 24.9106 13.2909L26.2654 6.49865C26.3875 5.88644 25.925 5.31324 25.3008 5.30317L7.94122 5.02324C7.24354 5.01199 6.74913 5.70067 6.98289 6.35812L10.2214 15.4665Z" fill="white"/>
@@ -71,12 +71,13 @@
                 <h1>Корзина</h1>
                 <section class="selected_section open">
                     <div class="selected_header">
-                        <label class="checkbox">
-                            <input type="checkbox" name="selected_checkbox" id="selected_checkbox" checked>
+                        <label id="selected_section__checkbox" class="checkbox">
+                            <input type="checkbox" onclick="selectAll(this)" name="selected_checkbox" id="selected_checkbox" checked>
                             <span></span>
                             <h2>Выбрать все</h2>
                         </label>
-                        <i></i>
+                        <p  id="selected_section__p">203 товаров · 2 100 569 сом</p>
+                        <i data-head="1" onclick="toggleSection(this)"></i>
                     </div>
                     <div class="selected_body">
 
@@ -84,7 +85,7 @@
                             <div class="item_left">
                                 <p class="size_mobile">56</p>
                                 <label class="checkbox">
-                                    <input type="checkbox" name="selected_checkbox" id="selected_checkbox" checked>
+                                    <input type="checkbox" onclick="selectItem(0)" name="selected_checkbox" id="selected_checkbox_0" checked>
                                     <span></span>
                                 </label>
                                 <picture>
@@ -93,6 +94,10 @@
                                     <img src="./assets/images/product/product_1.jpg" alt="Футболка UZcotton мужская">
                                 </picture>
                                 <header>
+                                    <div class="item_left_price">
+                                        <div class="price"><span id="price_0_mobile" style="font-size: 20px;">526</span>  сом</div>
+                                        <div id="full_price_0_mobile" class="total_price">1 051 сом</div>
+                                    </div>
                                     <h3 class="title_desktop"><a href="#">Футболка UZcotton мужская</a></h3>
                                     <h3 class="title_mobile"><a href="#">Футболка UZcotton мужская</a></h3>
                                     <ul>
@@ -100,7 +105,17 @@
                                         <li class="size_desktop">Размер: 56</li>
                                     </ul>
                                     <span>Коледино WB</span>
-                                    <span class="company">OOO Вайлдберриз <i></i></span>
+                                    <span class="company">OOO Вайлдберриз 
+                                        <i>
+                                            <div class="tooltip">
+                                                <div class="tooltip_body">
+                                                    <h4>OOO «МЕГАПРОФСТИЛЬ»</h4>
+                                                    <p>ОГРН: 5167746237148</p>
+                                                    <p>129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1, помещение 2, офис 34</p>
+                                                </div>
+                                            </div>
+                                        </i>
+                                    </span>
                                 </header>
                             </div>
                             <div class="item_right">
@@ -108,22 +123,21 @@
                                     <li class="item_right__count">
                                         <div class="item_right__counter">
                                             <label>
-                                                <button class="minus" disabled>−</button>
-                                                <input type="text" name="item_right__counter" value="1" id="item_right__counter">
-                                                <button class="plus">+</button>
+                                                <button data-id="0" onclick="minus(this)" class="minus" id="minus_0">−</button>
+                                                <input data-id="0" type="text" name="item_right__counter" value="1" id="item_right__counter_0" oninput="typeCount(this)">
+                                                <button data-max="infinity" data-id="0" onclick="plus(this)" class="plus" id="plus_0">+</button>
                                             </label>
                                         </div>
-                                        <span class="total_count">Осталось 2 шт.</span>
                                         <ul>
                                             <li>
-                                                <object class="like">
+                                                <object onclick="toLikeItem(this)" class="like">
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.03399 4.05857C2.26592 4.75224 1.76687 5.83284 1.99496 7.42928C2.22335 9.02783 3.26497 10.6852 4.80439 12.3478C6.25868 13.9184 8.10965 15.4437 9.99999 16.874C11.8903 15.4437 13.7413 13.9184 15.1956 12.3478C16.7351 10.6852 17.7767 9.02783 18.005 7.4293C18.2331 5.83285 17.734 4.75224 16.9659 4.05856C16.1767 3.34572 15.055 3 14 3C12.132 3 11.0924 4.08479 10.5177 4.68443C10.4581 4.7466 10.4035 4.80356 10.3535 4.85355C10.1583 5.04882 9.84169 5.04882 9.64643 4.85355C9.59644 4.80356 9.54185 4.7466 9.48227 4.68443C8.9076 4.08479 7.868 3 5.99999 3C4.94498 3 3.82328 3.34573 3.03399 4.05857ZM2.36374 3.31643C3.37372 2.40427 4.75205 2 5.99999 2C8.07126 2 9.34543 3.11257 9.99999 3.77862C10.6545 3.11257 11.9287 2 14 2C15.2479 2 16.6262 2.40428 17.6362 3.31644C18.6674 4.24776 19.2669 5.66715 18.995 7.5707C18.7233 9.47217 17.515 11.3148 15.9294 13.0272C14.3355 14.7486 12.3064 16.3952 10.3 17.9C10.1222 18.0333 9.87776 18.0333 9.69999 17.9C7.69356 16.3952 5.66446 14.7485 4.07063 13.0272C2.48506 11.3148 1.27668 9.47217 1.00501 7.57072C0.733043 5.66716 1.33253 4.24776 2.36374 3.31643Z" fill="black"/>
                                                     </svg>   
                                                 </object>
                                             </li>
                                             <li>
-                                                <object class="delete">
+                                                <object data-id="0" onclick="deleteItem(this)" class="delete">
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z" fill="black"/>
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z" fill="black"/>
@@ -134,8 +148,24 @@
                                         </ul>
                                     </li>
                                     <li class="item_right__price">
-                                        <div class="price"><span style="font-size: 20px;">522</span>  сом</div>
-                                        <div class="total_price">1051 сом</div>
+                                        <div class="price"><span id="price_0_desktop" style="font-size: 20px;">526</span>  сом</div>
+                                        <div class="total_price">
+                                            <span  id="full_price_0_desktop">1 051 сом</span>
+                                            <div class="tooltip">
+                                                <div id="tooltip_0" class="tooltip_body">
+                                                    <ul>
+                                                        <li>
+                                                            <span>Скидка 55%</span>
+                                                            <p>−300 сом</p>
+                                                        </li>
+                                                        <li>
+                                                            <span>Скидка покупателя 10%</span>
+                                                            <p>−30 сом</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
@@ -144,7 +174,7 @@
                         <article class="item">
                             <div class="item_left">
                                 <label class="checkbox">
-                                    <input type="checkbox" name="selected_checkbox" id="selected_checkbox" checked>
+                                    <input type="checkbox" onclick="selectItem(1)" name="selected_checkbox" id="selected_checkbox_1" checked>
                                     <span></span>
                                 </label>
                                 <picture>
@@ -153,13 +183,27 @@
                                     <img src="./assets/images/product/product_2.jpg" alt="Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe">
                                 </picture>
                                 <header>
+                                    <div class="item_left_price">
+                                        <div class="price"><span id="price_1_mobile" style="font-size: 20px;">805 000</span>  сом</div>
+                                        <div id="full_price_1_mobile" class="total_price">2 300 000 сом</div>
+                                    </div>
                                     <h3 class="title_desktop"><a href="#">Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe</a></h3>
                                     <h3 class="title_mobile"><a href="#">Силиконовый чехол картхолдер (отверстия) для...</a></h3>
                                     <ul>
                                         <li>Цвет: прозрачный</li>
                                     </ul>
                                     <span>Коледино WB</span>
-                                    <span class="company">OOO Мегапрофстиль <i></i></span>
+                                    <span class="company">OOO Мегапрофстиль 
+                                        <i>
+                                            <div class="tooltip">
+                                                <div class="tooltip_body">
+                                                    <h4>OOO «МЕГАПРОФСТИЛЬ»</h4>
+                                                    <p>ОГРН: 5167746237148</p>
+                                                    <p>129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1, помещение 2, офис 34</p>
+                                                </div>
+                                            </div>
+                                        </i>
+                                    </span>
                                 </header>
                             </div>
                             <div class="item_right">
@@ -167,22 +211,21 @@
                                     <li class="item_right__count">
                                         <div class="item_right__counter">
                                             <label>
-                                                <button class="minus" disabled>−</button>
-                                                <input type="text" name="item_right__counter" value="1" id="item_right__counter">
-                                                <button class="plus">+</button>
+                                                <button data-id="1" onclick="minus(this)" class="minus" id="minus_1">−</button>
+                                                <input data-id="1" type="text" name="item_right__counter" value="200" id="item_right__counter_1" oninput="typeCount(this)">
+                                                <button data-max="infinity" data-id="1" onclick="plus(this)" class="plus" id="plus_1">+</button>
                                             </label>
                                         </div>
-                                        <span class="total_count">Осталось 2 шт.</span>
                                         <ul>
                                             <li>
-                                                <object class="like">
+                                                <object onclick="toLikeItem(this)" class="like">
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.03399 4.05857C2.26592 4.75224 1.76687 5.83284 1.99496 7.42928C2.22335 9.02783 3.26497 10.6852 4.80439 12.3478C6.25868 13.9184 8.10965 15.4437 9.99999 16.874C11.8903 15.4437 13.7413 13.9184 15.1956 12.3478C16.7351 10.6852 17.7767 9.02783 18.005 7.4293C18.2331 5.83285 17.734 4.75224 16.9659 4.05856C16.1767 3.34572 15.055 3 14 3C12.132 3 11.0924 4.08479 10.5177 4.68443C10.4581 4.7466 10.4035 4.80356 10.3535 4.85355C10.1583 5.04882 9.84169 5.04882 9.64643 4.85355C9.59644 4.80356 9.54185 4.7466 9.48227 4.68443C8.9076 4.08479 7.868 3 5.99999 3C4.94498 3 3.82328 3.34573 3.03399 4.05857ZM2.36374 3.31643C3.37372 2.40427 4.75205 2 5.99999 2C8.07126 2 9.34543 3.11257 9.99999 3.77862C10.6545 3.11257 11.9287 2 14 2C15.2479 2 16.6262 2.40428 17.6362 3.31644C18.6674 4.24776 19.2669 5.66715 18.995 7.5707C18.7233 9.47217 17.515 11.3148 15.9294 13.0272C14.3355 14.7486 12.3064 16.3952 10.3 17.9C10.1222 18.0333 9.87776 18.0333 9.69999 17.9C7.69356 16.3952 5.66446 14.7485 4.07063 13.0272C2.48506 11.3148 1.27668 9.47217 1.00501 7.57072C0.733043 5.66716 1.33253 4.24776 2.36374 3.31643Z" fill="black"/>
                                                     </svg>   
                                                 </object>
                                             </li>
                                             <li>
-                                                <object class="delete">
+                                                <object data-id="1" onclick="deleteItem(this)" class="delete">
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z" fill="black"/>
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z" fill="black"/>
@@ -193,8 +236,24 @@
                                         </ul>
                                     </li>
                                     <li class="item_right__price">
-                                        <div class="price"><span style="font-size: 20px;">522</span>  сом</div>
-                                        <div class="total_price">1051 сом</div>
+                                        <div class="price"><span id="price_1_desktop" style="font-size: 15 px;">805 000</span>  сом</div>
+                                        <div class="total_price">
+                                            <span id="full_price_1_desktop">2 300 000 сом</span>
+                                            <div class="tooltip">
+                                                <div id="tooltip_1" class="tooltip_body">
+                                                    <ul>
+                                                        <li>
+                                                            <span>Скидка 55%</span>
+                                                            <p>−300 сом</p>
+                                                        </li>
+                                                        <li>
+                                                            <span>Скидка покупателя 10%</span>
+                                                            <p>−30 сом</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
@@ -203,7 +262,7 @@
                         <article class="item">
                             <div class="item_left">
                                 <label class="checkbox">
-                                    <input type="checkbox" name="selected_checkbox" id="selected_checkbox" checked>
+                                    <input type="checkbox" onclick="selectItem(2)" name="selected_checkbox" id="selected_checkbox_2" checked>
                                     <span></span>
                                 </label>
                                 <picture>
@@ -212,10 +271,24 @@
                                     <img src="./assets/images/product/product_3.jpg" alt="Карандаши цветные Faber-Castell Замок, набор 24 цвета, заточенные, шестигранные, Faber-Castell">
                                 </picture>
                                 <header>
+                                    <div class="item_left_price">
+                                        <div class="price"><span id="price_2_mobile" style="font-size: 20px;">428</span>  сом</div>
+                                        <div id="full_price_2_mobile" class="total_price">950 сом</div>
+                                    </div>
                                     <h3 class="title_desktop"><a href="#">Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные, Faber-Castell</a></h3>
                                     <h3 class="title_mobile"><a href="#">Карандаши цветные Faber-Castell "Замок", набор 24 цв...</a></h3>
                                     <span>Коледино WB</span>
-                                    <span class="company">OOO Вайлдберриз <i></i></span>
+                                    <span class="company">OOO Вайлдберриз 
+                                        <i>
+                                            <div class="tooltip">
+                                                <div class="tooltip_body">
+                                                    <h4>OOO «МЕГАПРОФСТИЛЬ»</h4>
+                                                    <p>ОГРН: 5167746237148</p>
+                                                    <p>129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1, помещение 2, офис 34</p>
+                                                </div>
+                                            </div>
+                                        </i>
+                                    </span>
                                 </header>
                             </div>
                             <div class="item_right">
@@ -223,22 +296,22 @@
                                     <li class="item_right__count">
                                         <div class="item_right__counter">
                                             <label>
-                                                <button class="minus" disabled>−</button>
-                                                <input type="text" name="item_right__counter" value="1" id="item_right__counter">
-                                                <button class="plus">+</button>
+                                                <button data-id="2" onclick="minus(this)" class="minus" id="minus_2">−</button>
+                                                <input data-id="2" type="text" name="item_right__counter" value="2" id="item_right__counter_2" oninput="typeCount(this)">
+                                                <button data-max="2" data-id="2" onclick="plus(this)" class="plus" id="plus_2" disabled>+</button>
                                             </label>
                                         </div>
                                         <span class="total_count">Осталось 2 шт.</span>
                                         <ul>
                                             <li>
-                                                <object class="like">
+                                                <object onclick="toLikeItem(this)" class="like">
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.03399 4.05857C2.26592 4.75224 1.76687 5.83284 1.99496 7.42928C2.22335 9.02783 3.26497 10.6852 4.80439 12.3478C6.25868 13.9184 8.10965 15.4437 9.99999 16.874C11.8903 15.4437 13.7413 13.9184 15.1956 12.3478C16.7351 10.6852 17.7767 9.02783 18.005 7.4293C18.2331 5.83285 17.734 4.75224 16.9659 4.05856C16.1767 3.34572 15.055 3 14 3C12.132 3 11.0924 4.08479 10.5177 4.68443C10.4581 4.7466 10.4035 4.80356 10.3535 4.85355C10.1583 5.04882 9.84169 5.04882 9.64643 4.85355C9.59644 4.80356 9.54185 4.7466 9.48227 4.68443C8.9076 4.08479 7.868 3 5.99999 3C4.94498 3 3.82328 3.34573 3.03399 4.05857ZM2.36374 3.31643C3.37372 2.40427 4.75205 2 5.99999 2C8.07126 2 9.34543 3.11257 9.99999 3.77862C10.6545 3.11257 11.9287 2 14 2C15.2479 2 16.6262 2.40428 17.6362 3.31644C18.6674 4.24776 19.2669 5.66715 18.995 7.5707C18.7233 9.47217 17.515 11.3148 15.9294 13.0272C14.3355 14.7486 12.3064 16.3952 10.3 17.9C10.1222 18.0333 9.87776 18.0333 9.69999 17.9C7.69356 16.3952 5.66446 14.7485 4.07063 13.0272C2.48506 11.3148 1.27668 9.47217 1.00501 7.57072C0.733043 5.66716 1.33253 4.24776 2.36374 3.31643Z" fill="black"/>
                                                     </svg>   
                                                 </object>
                                             </li>
                                             <li>
-                                                <object class="delete">
+                                                <object data-id="2" onclick="deleteItem(this)" class="delete">
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z" fill="black"/>
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z" fill="black"/>
@@ -249,8 +322,24 @@
                                         </ul>
                                     </li>
                                     <li class="item_right__price">
-                                        <div class="price"><span style="font-size: 20px;">522</span>  сом</div>
-                                        <div class="total_price">1051 сом</div>
+                                        <div class="price"><span id="price_2_desktop" style="font-size: 20px;">428</span>  сом</div>
+                                        <div class="total_price">
+                                            <span id="full_price_2_desktop">950 сом</span>
+                                            <div class="tooltip">
+                                                <div id="tooltip_2" class="tooltip_body">
+                                                    <ul>
+                                                        <li>
+                                                            <span>Скидка 55%</span>
+                                                            <p>−300 сом</p>
+                                                        </li>
+                                                        <li>
+                                                            <span>Скидка покупателя 10%</span>
+                                                            <p>−30 сом</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
@@ -261,12 +350,8 @@
 
                 <section class="selected_section selected_section__missing open">
                     <div class="selected_header">
-                        <label class="checkbox">
-                            <input type="checkbox" name="selected_checkbox" id="selected_checkbox" checked>
-                            <span></span>
-                            <h2>Отсутствуют · 3 товара</h2>
-                        </label>
-                        <i></i>
+                        <h2>Отсутствуют · 3 товара</h2>
+                        <i data-head="1" onclick="toggleSection(this)"></i>
                     </div>
                     <div class="selected_body">
 
@@ -292,14 +377,14 @@
                                     <li class="item_right__count">
                                         <ul>
                                             <li>
-                                                <object class="like">
+                                                <object onclick="toLikeItem(this)" class="like">
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.03399 4.05857C2.26592 4.75224 1.76687 5.83284 1.99496 7.42928C2.22335 9.02783 3.26497 10.6852 4.80439 12.3478C6.25868 13.9184 8.10965 15.4437 9.99999 16.874C11.8903 15.4437 13.7413 13.9184 15.1956 12.3478C16.7351 10.6852 17.7767 9.02783 18.005 7.4293C18.2331 5.83285 17.734 4.75224 16.9659 4.05856C16.1767 3.34572 15.055 3 14 3C12.132 3 11.0924 4.08479 10.5177 4.68443C10.4581 4.7466 10.4035 4.80356 10.3535 4.85355C10.1583 5.04882 9.84169 5.04882 9.64643 4.85355C9.59644 4.80356 9.54185 4.7466 9.48227 4.68443C8.9076 4.08479 7.868 3 5.99999 3C4.94498 3 3.82328 3.34573 3.03399 4.05857ZM2.36374 3.31643C3.37372 2.40427 4.75205 2 5.99999 2C8.07126 2 9.34543 3.11257 9.99999 3.77862C10.6545 3.11257 11.9287 2 14 2C15.2479 2 16.6262 2.40428 17.6362 3.31644C18.6674 4.24776 19.2669 5.66715 18.995 7.5707C18.7233 9.47217 17.515 11.3148 15.9294 13.0272C14.3355 14.7486 12.3064 16.3952 10.3 17.9C10.1222 18.0333 9.87776 18.0333 9.69999 17.9C7.69356 16.3952 5.66446 14.7485 4.07063 13.0272C2.48506 11.3148 1.27668 9.47217 1.00501 7.57072C0.733043 5.66716 1.33253 4.24776 2.36374 3.31643Z" fill="black"/>
                                                     </svg>   
                                                 </object>
                                             </li>
                                             <li>
-                                                <object class="delete">
+                                                <object onclick="deleteItem(this)" class="delete">
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z" fill="black"/>
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z" fill="black"/>
@@ -337,14 +422,14 @@
                                     <li class="item_right__count">
                                         <ul>
                                             <li>
-                                                <object class="like">
+                                                <object onclick="toLikeItem(this)" class="like">
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.03399 4.05857C2.26592 4.75224 1.76687 5.83284 1.99496 7.42928C2.22335 9.02783 3.26497 10.6852 4.80439 12.3478C6.25868 13.9184 8.10965 15.4437 9.99999 16.874C11.8903 15.4437 13.7413 13.9184 15.1956 12.3478C16.7351 10.6852 17.7767 9.02783 18.005 7.4293C18.2331 5.83285 17.734 4.75224 16.9659 4.05856C16.1767 3.34572 15.055 3 14 3C12.132 3 11.0924 4.08479 10.5177 4.68443C10.4581 4.7466 10.4035 4.80356 10.3535 4.85355C10.1583 5.04882 9.84169 5.04882 9.64643 4.85355C9.59644 4.80356 9.54185 4.7466 9.48227 4.68443C8.9076 4.08479 7.868 3 5.99999 3C4.94498 3 3.82328 3.34573 3.03399 4.05857ZM2.36374 3.31643C3.37372 2.40427 4.75205 2 5.99999 2C8.07126 2 9.34543 3.11257 9.99999 3.77862C10.6545 3.11257 11.9287 2 14 2C15.2479 2 16.6262 2.40428 17.6362 3.31644C18.6674 4.24776 19.2669 5.66715 18.995 7.5707C18.7233 9.47217 17.515 11.3148 15.9294 13.0272C14.3355 14.7486 12.3064 16.3952 10.3 17.9C10.1222 18.0333 9.87776 18.0333 9.69999 17.9C7.69356 16.3952 5.66446 14.7485 4.07063 13.0272C2.48506 11.3148 1.27668 9.47217 1.00501 7.57072C0.733043 5.66716 1.33253 4.24776 2.36374 3.31643Z" fill="black"/>
                                                     </svg>   
                                                 </object>
                                             </li>
                                             <li>
-                                                <object class="delete">
+                                                <object onclick="deleteItem(this)" class="delete">
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z" fill="black"/>
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z" fill="black"/>
@@ -379,14 +464,14 @@
                                     <li class="item_right__count">
                                         <ul>
                                             <li>
-                                                <object class="like">
+                                                <object onclick="toLikeItem(this)" class="like">
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.03399 4.05857C2.26592 4.75224 1.76687 5.83284 1.99496 7.42928C2.22335 9.02783 3.26497 10.6852 4.80439 12.3478C6.25868 13.9184 8.10965 15.4437 9.99999 16.874C11.8903 15.4437 13.7413 13.9184 15.1956 12.3478C16.7351 10.6852 17.7767 9.02783 18.005 7.4293C18.2331 5.83285 17.734 4.75224 16.9659 4.05856C16.1767 3.34572 15.055 3 14 3C12.132 3 11.0924 4.08479 10.5177 4.68443C10.4581 4.7466 10.4035 4.80356 10.3535 4.85355C10.1583 5.04882 9.84169 5.04882 9.64643 4.85355C9.59644 4.80356 9.54185 4.7466 9.48227 4.68443C8.9076 4.08479 7.868 3 5.99999 3C4.94498 3 3.82328 3.34573 3.03399 4.05857ZM2.36374 3.31643C3.37372 2.40427 4.75205 2 5.99999 2C8.07126 2 9.34543 3.11257 9.99999 3.77862C10.6545 3.11257 11.9287 2 14 2C15.2479 2 16.6262 2.40428 17.6362 3.31644C18.6674 4.24776 19.2669 5.66715 18.995 7.5707C18.7233 9.47217 17.515 11.3148 15.9294 13.0272C14.3355 14.7486 12.3064 16.3952 10.3 17.9C10.1222 18.0333 9.87776 18.0333 9.69999 17.9C7.69356 16.3952 5.66446 14.7485 4.07063 13.0272C2.48506 11.3148 1.27668 9.47217 1.00501 7.57072C0.733043 5.66716 1.33253 4.24776 2.36374 3.31643Z" fill="black"/>
                                                     </svg>   
                                                 </object>
                                             </li>
                                             <li>
-                                                <object class="delete">
+                                                <object onclick="deleteItem(this)" class="delete">
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z" fill="black"/>
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z" fill="black"/>
@@ -410,13 +495,13 @@
                 <section class="delivery">
                     <div class="delivery_head">
                         <h2>Способ доставки</h2>
-                        <p>Изменить</p>
+                        <p onclick="openModal('delivery')">Изменить</p>
                     </div>
                     <div class="delivery_body">
                         <ul>
                             <li>
                                 <p class="head">Пункт выдачи</p>
-                                <p>
+                                <p id="delivery_main">
                                     Бишкек, улица Ахматбека Суюмбаева, 12/1<br>
                                     <span><i class="star"></i> 4.99  Ежедневно с 10 до 21 </span>
                                 </p>
@@ -425,61 +510,27 @@
                                 <p class="head">Стоимость доставки</p>
                                 <p>Бесплатно</p>
                             </li>
-                            <li>
-                                <p class="head">5—6 февраля</p>
-                                <ul>
-                                    <li>
-                                        <picture>
-                                            <sourse srcset="./assets/images/product/product_1.webp" type="image/webp">
-                                            <sourse srcset="./assets/images/product/product_1.jpg" type="image/jp2">
-                                            <img src="./assets/images/product/product_1.jpg" alt="Футболка UZcotton мужская">
-                                        </picture>
-                                    </li>
-                                    <li>
-                                        <span>184</span>
-                                        <picture>
-                                            <sourse srcset="./assets/images/product/product_2.webp" type="image/webp">
-                                            <sourse srcset="./assets/images/product/product_2.jpg" type="image/jp2">
-                                            <img src="./assets/images/product/product_2.jpg" alt="Футболка UZcotton мужская">
-                                        </picture>
-                                    </li>
-                                    <li>
-                                        <span>2</span>
-                                        <picture>
-                                            <sourse srcset="./assets/images/product/product_3__missing.webp" type="image/webp">
-                                            <sourse srcset="./assets/images/product/product_3.jpg" type="image/jp2">
-                                            <img src="./assets/images/product/product_3.jpg" alt="Футболка UZcotton мужская">
-                                        </picture>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <p class="head">7—8 февраля</p>
-                                <ul>
-                                    <li>
-                                        <li>
-                                            <span>16</span>
-                                            <picture>
-                                                <sourse srcset="./assets/images/product/product_2.webp" type="image/webp">
-                                                <sourse srcset="./assets/images/product/product_2.jpg" type="image/jp2">
-                                                <img src="./assets/images/product/product_2.jpg" alt="Футболка UZcotton мужская">
-                                            </picture>
-                                        </li>
-                                    </li>
-                                </ul>
-                            </li>
                         </ul>
-                        <div class="delivery_info"><i></i> <p>Обратная доставка товаров на склад при отказе —  <span> бесплатно</span></p></div>
+                        <ul id="delivery_body__ul">
+                           
+                        </ul>
+                        <div class="delivery_info">
+                            <div class="tooltip">
+                                <div class="tooltip_body">
+                                    Если товары вам не подойдут, мы вернем их обратно на склад — это бесплатно
+                                </div>
+                            </div>
+                            <i></i> <p>Обратная доставка товаров на склад при отказе — <span>бесплатно</span></p></div>
                     </div>
                 </section>
 
                 <section class="payment_type">
                     <div class="payment_type__head">
                         <h2>Способ оплаты</h2>
-                        <p>Изменить</p>
+                        <p onclick="openModal('payment')">Изменить</p>
                     </div>
                     <div class="payment_type__body">
-                        <div class="payment_type__card">
+                        <div id="payment_type__card">
                             <img src="./assets/images/payment_type/MIR.jpg" alt="">
                             <p>1234 56•• •••• 1234</p>
                             <p>01/30</p>
@@ -496,26 +547,26 @@
                         <div>
                             <label>
                                 
-                                <input type="text" name="" id="">  
-                                <span>Имя</span>                   
+                                <input onblur="validateName(this, 'name')" type="text" value="" name="person_name" id="person_name">  
+                                <span id="person_name__span">Имя</span>                   
                             </label>
                             <label>
-                                <input type="text" name="" id="">
-                                <span>Фамилия</span>
+                                <input onblur="validateName(this, 'surename')" type="text" name="person_surename" id="person_surename">
+                                <span id="person_surename__span">Фамилия</span>
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="text" name="" id="">
-                                <span>Почта</span>
+                                <input onblur="validateMail(this)" type="text" name="person_mail" id="person_mail">
+                                <span id="person_mail__span">Почта</span>
                             </label>
                             <label>
-                                <input type="text" name="" id="">
-                                <span>Телефон</span>
+                                <input onblur="validateNumber(this)" type="text" name="person_number" id="person_number">
+                                <span id="person_number__span">Телефон</span>
                             </label>
                             <label>
-                                <input type="text" name="" id="">
-                                <span>ИНН</span>
+                                <input onblur="validateINN(this)" type="text" name="person_inn" id="person_inn">
+                                <span id="person_inn__span">ИНН</span>
                                 <p>Для таможенного оформления</p>
                             </label>
                         </div>
@@ -527,15 +578,15 @@
                 <ul class="aside_total">
                     <li class="aside_total_header">
                         <p>Итого</p>
-                        <p><span>2 101 063</span> сом</p>
+                        <p><span id="aside_price_total">805 740</span> сом</p>
                     </li>
                     <li>
-                        <p>4 товара</p>
-                        <p>2 302 048 сом</p>
+                        <p id="count_items">4 товара</p>
+                        <p id="aside_full_price_total">2 301 526 сом</p>
                     </li>
                     <li>
                         <p>Скидка</p>
-                        <p>−200 985 сом</p>
+                        <p id="aside_price_discount">−1 495 786 сом</p>
                     </li>
                     <li>
                         <p>Доставка</p>
@@ -546,28 +597,34 @@
                 <div class="aside_delivery_section aside_section">
                     <div class="aside_delivery_section__head">
                         <h3>Доставка в пункт выдачи</h3>
-                        <i></i>
+                        <i onclick="openModal('delivery')"></i>
                     </div>
                     <div class="aside_delivery_section__body">
-                        <p>Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
+                        <p id="delivery_aside">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
                         <p class="date">5–8 фев</p>
-                        <div class="delivery_info"><i></i> <p>Обратная доставка товаров на склад при отказе —  <span> бесплатно</span></p></div>
+                        <div class="delivery_info">
+                            <div class="tooltip">
+                                <div class="tooltip_body">
+                                    Если товары вам не подойдут, мы вернем их обратно на склад — это бесплатно
+                                </div>
+                            </div>
+                            <i></i> <p>Обратная доставка товаров на склад при отказе —  <span> бесплатно</span></p></div>
                     </div>
                 </div>
 
                 <div class="aside_payment_section aside_section">
                     <div class="aside_payment_section__head">
-                        <h3>Доставка в пункт выдачи</h3>
-                        <i></i>
+                        <h3>Оплата картой</h3>
+                        <i onclick="openModal('payment')"></i>
                     </div>
                     <div class="aside_payment_section__body">
-                        <div class="aside_card_selected">
+                        <div id="aside_card_selected">
                             <img src="./assets/images/payment_type/MIR.jpg" alt="">
                             <p>1234 12•• •••• 1234</p>
                         </div>
                         <div class="aside_payment_info">
                             <label class="checkbox">
-                                <input type="checkbox" name="" id="">
+                                <input onclick="payNow(this)" type="checkbox" name="" id="aside_payment_info">
                                 <span></span>
                                 <h3>Списать оплату сразу</h3>
                             </label>
@@ -577,7 +634,7 @@
                 </div>
 
                 <div class="btn-wrapper">
-                    <button>Заказать</button>
+                    <button id="submit_cart">Заказать</button>
                     <div class="policy">
                         <i></i>
                         <p>Соглашаюсь <a href="#">с правилами пользования торговой площадкой и возврата</a></p>
@@ -598,7 +655,7 @@
                 <li><a href=""></a></li>
                 <li>
                     <a href="">
-                        <span>3</span>
+                        <span id="cart_mobile">3</span>
                     </a>
                 </li>
                 <li><a href=""></a></li>
@@ -607,18 +664,18 @@
         </nav>
     </div>
 
-    <div class="modal_payment_outer">
+    <div id="modal_payment_outer">
         <div class="modal">
             <div class="modal_top">
                 <div class="modal_header">
                     <h3>Способ оплаты</h3>
-                    <i class="close"></i>
+                    <i class="close"  onclick="closeModal(this)"></i>
                 </div>
                 <div class="modal_body">
                     <ul>
                         <li>
                             <label>
-                                <input type="radio" name="payment_type" value="MIR" checked>
+                                <input data-id="0" data-payment="1234 56•• •••• 1234" type="radio" name="payment_type" value="MIR" id="payment_type__0" checked>
                                 <span></span>
                                 <p>
                                     <img src="./assets/images/payment_type/MIR.jpg" alt="">
@@ -628,7 +685,7 @@
                         </li>
                         <li>
                             <label>
-                                <input type="radio" name="payment_type" value="VISA">
+                                <input data-id="1" data-payment="1234 56•• •••• 1234" type="radio" name="payment_type" value="VISA" id="payment_type__1">
                                 <span></span>
                                 <p>
                                     <img src="./assets/images/payment_type/VISA.jpg" alt="">
@@ -638,7 +695,7 @@
                             </li>
                         <li>
                             <label>
-                                <input type="radio" name="payment_type" value="MASTERCARD">
+                                <input data-id="2" data-payment="1234 56•• •••• 1234" type="radio" name="payment_type" value="MASTERCARD" id="payment_type__2">
                                 <span></span>
                                 <p>
                                     <img src="./assets/images/payment_type/MASTERCARD.jpg" alt="">
@@ -648,7 +705,7 @@
                         </li>
                         <li>
                             <label>
-                                <input type="radio" name="payment_type" value="MAESTRO">
+                                <input data-id="3" data-payment="1234 56•• •••• 1234" type="radio" name="payment_type" value="MAESTRO" id="payment_type__3">
                                 <span></span>
                                 <p>
                                     <img src="./assets/images/payment_type/MAESTRO.jpg" alt="">
@@ -659,71 +716,27 @@
                     </ul>
                 </div>
             </div>
-            <button>Выбрать</button>
+            <button onclick="changePaymentType()">Выбрать</button>
         </div>
     </div>
 
-    <div class="modal_delivery_outer">
+    <div id="modal_delivery_outer">
         <div class="modal">
             <div class="modal_top">
                 <div class="modal_header">
-                    <h3>Способ оплаты</h3>
-                    <i></i>
+                    <h3>Способ доставки</h3>
+                    <i class="close" onclick="closeModal(this)"></i>
                 </div>
                 <ul class="modal_selected_type">
-                    <li>В пункт выдачи</li>
-                    <li class="selected">Курьером</li>
+                    <li id="delivery_type_head__0" onclick="changeDeliveryToHeadType(0)" class="">В пункт выдачи</li>
+                    <li id="delivery_type_head__1" onclick="changeDeliveryToHeadType(1)" class="selected">Курьером</li>
                 </ul>
                 <div class="modal_body">
                     <h4>Мои адреса</h4>
-                    <ul class="courier selected">
+                    <ul data-id="0" id="delivery_type_body__0" class="point_of_issue">
                         <li>
                             <label>
-                                <input type="radio" name="delivery_type" id="" checked>
-                                <span></span>
-                                <p>Бишкек, улица Табышалиева, 57</p>
-                            </label>
-                            <object class="delete">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z" fill="#A0A0A4"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z" fill="#A0A0A4"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5.5H7V3.46875C7 2.65758 7.65758 2 8.46875 2H11.5312C12.3424 2 13 2.65758 13 3.46875V5.5ZM8.46875 3C8.20987 3 8 3.20987 8 3.46875V4.5H12V3.46875C12 3.20987 11.7901 3 11.5312 3H8.46875Z" fill="#A0A0A4"/>
-                                </svg>
-                            </object>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" name="delivery_type" id="">
-                                <span></span>
-                                <p>Бишкек, улица Жукеева-Пудовкина, 77/1</p>
-                            </label>
-                            <object class="delete">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z" fill="#A0A0A4"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z" fill="#A0A0A4"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5.5H7V3.46875C7 2.65758 7.65758 2 8.46875 2H11.5312C12.3424 2 13 2.65758 13 3.46875V5.5ZM8.46875 3C8.20987 3 8 3.20987 8 3.46875V4.5H12V3.46875C12 3.20987 11.7901 3 11.5312 3H8.46875Z" fill="#A0A0A4"/>
-                                </svg>
-                            </object>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" name="delivery_type" id="">
-                                <span></span>
-                                <p>Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1</p>
-                            </label>
-                            <object class="delete">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z" fill="#A0A0A4"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z" fill="#A0A0A4"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5.5H7V3.46875C7 2.65758 7.65758 2 8.46875 2H11.5312C12.3424 2 13 2.65758 13 3.46875V5.5ZM8.46875 3C8.20987 3 8 3.20987 8 3.46875V4.5H12V3.46875C12 3.20987 11.7901 3 11.5312 3H8.46875Z" fill="#A0A0A4"/>
-                                </svg>
-                            </object>
-                        </li>
-                    </ul>
-                    <ul style="display: none;" class="point_of_issue">
-                        <li>
-                            <label>
-                                <input type="radio" name="delivery_type" id="">
+                                <input value="0" data-issue="Бишкек, улица Табышалиева, 57" type="radio" name="delivery_type" id="delivery_type__0">
                                 <span></span>
                                 <div>
                                     <p>Бишкек, улица Табышалиева, 57</p>
@@ -740,7 +753,7 @@
                         </li>
                         <li>
                             <label>
-                                <input type="radio" name="delivery_type" id="">
+                                <input value="1" data-issue="Бишкек, улица Жукеева-Пудовкина, 77/1" type="radio" name="delivery_type" id="delivery_type__1">
                                 <span></span>
                                 <div>
                                     <p>Бишкек, улица Жукеева-Пудовкина, 77/1</p>
@@ -757,7 +770,7 @@
                         </li>
                         <li>
                             <label>
-                                <input type="radio" name="delivery_type" id="">
+                                <input value="2" data-issue="Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1" type="radio" name="delivery_type" id="delivery_type__2">
                                 <span></span>
                                 <div>
                                     <p>Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1</p>
@@ -773,9 +786,53 @@
                             </object>
                         </li>
                     </ul>
+                    <ul data-id="1" id="delivery_type_body__1" class="courier selected">
+                        <li>
+                            <label>
+                                <input value="3" data-issue="Бишкек, улица Табышалиева, 57" type="radio" name="delivery_type" id="delivery_type__3" checked>
+                                <span></span>
+                                <p>Бишкек, улица Табышалиева, 57</p>
+                            </label>
+                            <object class="delete">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z" fill="#A0A0A4"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z" fill="#A0A0A4"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5.5H7V3.46875C7 2.65758 7.65758 2 8.46875 2H11.5312C12.3424 2 13 2.65758 13 3.46875V5.5ZM8.46875 3C8.20987 3 8 3.20987 8 3.46875V4.5H12V3.46875C12 3.20987 11.7901 3 11.5312 3H8.46875Z" fill="#A0A0A4"/>
+                                </svg>
+                            </object>
+                        </li>
+                        <li>
+                            <label>
+                                <input value="4" data-issue="Бишкек, улица Жукеева-Пудовкина, 77/1" type="radio" name="delivery_type" id="delivery_type__4">
+                                <span></span>
+                                <p>Бишкек, улица Жукеева-Пудовкина, 77/1</p>
+                            </label>
+                            <object class="delete">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z" fill="#A0A0A4"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z" fill="#A0A0A4"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5.5H7V3.46875C7 2.65758 7.65758 2 8.46875 2H11.5312C12.3424 2 13 2.65758 13 3.46875V5.5ZM8.46875 3C8.20987 3 8 3.20987 8 3.46875V4.5H12V3.46875C12 3.20987 11.7901 3 11.5312 3H8.46875Z" fill="#A0A0A4"/>
+                                </svg>
+                            </object>
+                        </li>
+                        <li>
+                            <label>
+                                <input value="5" data-issue="Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1" type="radio" name="delivery_type" id="delivery_type__5">
+                                <span></span>
+                                <p>Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1</p>
+                            </label>
+                            <object class="delete">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z" fill="#A0A0A4"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z" fill="#A0A0A4"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5.5H7V3.46875C7 2.65758 7.65758 2 8.46875 2H11.5312C12.3424 2 13 2.65758 13 3.46875V5.5ZM8.46875 3C8.20987 3 8 3.20987 8 3.46875V4.5H12V3.46875C12 3.20987 11.7901 3 11.5312 3H8.46875Z" fill="#A0A0A4"/>
+                                </svg>
+                            </object>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <button>Выбрать</button>
+            <button onclick="changeDeliveryType()">Выбрать</button>
         </div>
     </div>
 
