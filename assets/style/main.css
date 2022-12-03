@@ -739,7 +739,9 @@ i.star {
     margin-top: 30px;
 }
 
-.recipient_body input[type="text"] {
+.recipient_body input[type="text"],
+.recipient_body input[type="mail"],
+.recipient_body input[type="tel"] {
     outline: none;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -748,9 +750,12 @@ i.star {
     font-size: 16px;
     font-family: 'Segoe UI';
     width: 100%;
+    background-color: transparent !important;
 }
 
-.recipient_body input[type="text"]::placeholder {
+.recipient_body input[type="text"]::placeholder,
+.recipient_body input[type="mail"]::placeholder,
+.recipient_body input[type="tel"]::placeholder {
     color: #A0A0A4;
 }
 

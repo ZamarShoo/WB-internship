@@ -544,30 +544,34 @@
                         <h2>Получатель</h2>
                     </div>
                     <form class="recipient_body">
-                        <div>
+                        <div id="recipient_body__form">
                             <label>
                                 
                                 <input onblur="validateName(this, 'name')" type="text" value="" name="person_name" id="person_name">  
-                                <span id="person_name__span">Имя</span>                   
+                                <span id="person_name__span">Имя</span>    
+                                <p id="person_name__p"></p>               
                             </label>
                             <label>
-                                <input onblur="validateName(this, 'surename')" type="text" name="person_surename" id="person_surename">
+                                <input onblur="validateName(this, 'surename')" type="text" value=""  name="person_surename" id="person_surename">
                                 <span id="person_surename__span">Фамилия</span>
+                                <p id="person_surename__p"></p>
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input onblur="validateMail(this)" type="text" name="person_mail" id="person_mail">
+                                <input onblur="validateMail(this)" type="mail" value=""  name="person_mail" id="person_mail">
                                 <span id="person_mail__span">Почта</span>
+                                <p id="person_mail__p"></p>
                             </label>
                             <label>
-                                <input onblur="validateNumber(this)" type="text" name="person_number" id="person_number">
+                                <input onblur="validateNumber(this)" type="text" value=""  name="person_number" id="person_number">
                                 <span id="person_number__span">Телефон</span>
+                                <p id="person_number__p"></p>
                             </label>
                             <label>
-                                <input onblur="validateINN(this)" type="text" name="person_inn" id="person_inn">
+                                <input onblur="validateINN(this)" type="text" value=""  name="person_inn" id="person_inn">
                                 <span id="person_inn__span">ИНН</span>
-                                <p>Для таможенного оформления</p>
+                                <p id="person_inn__p">Для таможенного оформления</p>
                             </label>
                         </div>
                     </form>
@@ -634,7 +638,7 @@
                 </div>
 
                 <div class="btn-wrapper">
-                    <button id="submit_cart">Заказать</button>
+                    <button id="submit_cart" onclick="submitCart()">Заказать</button>
                     <div class="policy">
                         <i></i>
                         <p>Соглашаюсь <a href="#">с правилами пользования торговой площадкой и возврата</a></p>

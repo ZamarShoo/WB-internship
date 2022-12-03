@@ -512,14 +512,81 @@ function cartCreator() {
 }
 
 // 1. Форма
+function submitCart() {
+    // Имя
+    const name = document.getElementById('person_name')
+    const name_p = document.getElementById('person_name__p')
+    if (!!name.value.length) {
+        name.closest('label').classList.remove('error')
+        name_p.innerHTML = ''
+    } else {
+        name_p.innerHTML = 'Укажите имя'
+        name.closest('label').classList.add('error')
+    }
+
+    // Фамилия
+    const surename = document.getElementById('person_surename')
+    const surename_p = document.getElementById('person_surename__p')
+    if (!!surename.value.length) {
+        surename.closest('label').classList.remove('error')
+        surename_p.innerHTML = ''
+    } else {
+        surename_p.innerHTML = 'Введите фамилию'
+        surename.closest('label').classList.add('error')
+    }
+
+    // Почта
+    const mail = document.getElementById('person_mail')
+    const mail_p = document.getElementById('person_mail__p')
+    if (!!mail.value.length) {
+        mail.closest('label').classList.remove('error')
+        mail_p.innerHTML = ''
+    } else {
+        mail_p.innerHTML = 'Укажите электронную почту'
+        mail.closest('label').classList.add('error')
+    }
+
+    // Номер телефона
+    const number = document.getElementById('person_number')
+    const number_p = document.getElementById('person_number__p')
+    if (!!number.value.length) {
+        number.closest('label').classList.remove('error')
+        number_p.innerHTML = ''
+    } else {
+        number_p.innerHTML = 'Укажите имя'
+        number.closest('label').classList.add('error')
+    }
+
+    // ИНН
+    const inn = document.getElementById('person_inn')
+    const inn_p = document.getElementById('person_inn__p')
+    if (!!inn.value.length) {
+        inn.closest('label').classList.remove('error')
+        inn_p.innerHTML = ''
+    } else {
+        inn_p.innerHTML = 'Укажите имя'
+        inn.closest('label').classList.add('error')
+    }
+
+    if (name.closest('label').classList.contains('error') || surename.classList.closest('label').contains('error')
+    || mail.closest('label').classList.contains('error') || number.classList.closest('label').contains('error')
+    || inn.closest('label').classList.contains('error')) {
+        document.getElementById('recipient_body__form').scrollIntoView({behavior: "smooth"})
+    }
+}
+
 function validateName(e, type) {
     if (!e.value.length) {
         document.getElementById(`person_${type}__span`).classList.remove('active')
         e.closest('label').classList.remove('error')
+        document.getElementById('person_name__p').innerHTML = ''
+        document.getElementById('person_surename__p').innerHTML = ''
     } else {
         document.getElementById(`person_${type}__span`).classList.add('active')
         if (e.value === e.value.replace(/[^А-яЁё ]/g, '')) {
             e.closest('label').classList.remove('error')
+            document.getElementById('person_name__p').innerHTML = ''
+            document.getElementById('person_surename__p').innerHTML = ''
         } else {
             e.closest('label').classList.add('error')
         }
@@ -529,12 +596,15 @@ function validateName(e, type) {
 function validateMail(e) {
     if (!e.value.length) {
         document.getElementById('person_mail__span').classList.remove('active')
+        document.getElementById('person_mail__p').innerHTML = ''
     } else {
         document.getElementById('person_mail__span').classList.add('active')
         if (e.value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/)) {
             e.closest('label').classList.remove('error')
+            document.getElementById('person_mail__p').innerHTML = ''
         } else {
             e.closest('label').classList.add('error')
+            document.getElementById('person_mail__p').innerHTML = 'Проверьте адрес электронной почты'
         }
     }
 }
@@ -543,12 +613,17 @@ function validateNumber(e) {
     if (!e.value.length) {
         document.getElementById('person_number__span').classList.remove('active')
         e.closest('label').classList.remove('error')
+        document.getElementById('person_mail__p').innerHTML = ''
     } else {
         document.getElementById('person_number__span').classList.add('active')
-        if (e.value.match(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/)) {
+        let number = e.value.replace(/[^0-9]/g, '')
+        if (!e.value.match(/[!@#$&*%]/) && !e.value.match(/[A-Za-z]/)) {
             e.closest('label').classList.remove('error')
+            document.getElementById('person_mail__p').innerHTML = ''
+            e.value = `+${number.slice(0,1)} ${number.slice(1,4)} ${number.slice(4,7)} ${number.slice(7,9)} ${number.slice(9)}`
         } else {
             e.closest('label').classList.add('error')
+            document.getElementById('person_mail__p').innerHTML = 'Формат: +9 999 999 99 99'
         }
     }
 }
@@ -557,12 +632,15 @@ function validateINN(e) {
     if (!e.value.length) {
         document.getElementById('person_inn__span').classList.remove('active')
         e.closest('label').classList.remove('error')
+        document.getElementById('person_inn__p').innerHTML = ''
     } else {
         document.getElementById('person_inn__span').classList.add('active')
         if (e.value === e.value.replace(/[^0-9]/, '').substr(0,10)) {
             e.closest('label').classList.remove('error')
+            document.getElementById('person_inn__p').innerHTML = ''
         } else {
             e.closest('label').classList.add('error')
+            document.getElementById('person_inn__p').innerHTML = 'Формат: 1234567'
         }
     }
 }
