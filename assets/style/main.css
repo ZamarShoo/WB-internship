@@ -1105,6 +1105,8 @@ aside .checkbox span {
     align-items: baseline;
 }
 
+.selected_section__missing .checkbox {display: none;}
+
 @media screen and (max-width: 1100px) {
     aside {
         width: 305px;
@@ -1390,6 +1392,7 @@ aside .checkbox span {
         margin-top: 0 !important;
         border-radius: 0;
     }
+    .selected_section__missing .checkbox {display: block;}
 }
 
 /*  FOOTER  */
